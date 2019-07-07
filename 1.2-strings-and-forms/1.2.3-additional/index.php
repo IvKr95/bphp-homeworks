@@ -30,6 +30,7 @@ $currency = 'руб.';
 $price = number_format($price, 0, '.', ' ') . " $currency";
 
 
+
 ?>
 
 <!DOCTYPE html>
