@@ -7,7 +7,7 @@ $map = [
     [false,false,true,false,false],
     [false,true,false,false,false],
     [false,false,false,true,false],
-    [false,false,false,false,false],
+    [true,false,true,false,false],
 ];
 
 $n = 4;
@@ -17,24 +17,22 @@ logResult($result);
 function findSeats($map, $n) 
 {
     $seats = [];
-    $seatNum = 0;
 
     if (!isset($map)) return;
 
     foreach ($map as $key => $value) {
-
-        if ($n > count($value) || !in_array(false, $value)) {
-            return;
-        };
+        $seatNum = 0;
+        if ($n > count($value) || !in_array(false, $value)) return;
 
         $stop = (count($value) - $n) + 1;
 
         foreach ($value as $seat) {
 
+            
             $seatNum++;
 
             if (count($seats) < $n) {
-
+                
                 $stop--;
 
                 if (!$seat) {

@@ -10,7 +10,8 @@ logReserve($requiredRow, $requiredPlace, $reverve);
 
 function generate($rows, $placesPerRow, $avaliableCount) 
 {
-
+    if ($avaliableCount > ($row * $placesPerRow)) return false;
+    
     $seatMap = [];
     $seatCount = 0;
 
