@@ -3,9 +3,12 @@
 include 'autoload.php';
 include 'config/SystemConfig.php';
 
-
-$a = new JsonFileAccessModel('1');
-echo $a->read();
+$fileName = '1';
+$obj = new FileAccessModel($fileName);
+$objJson = new JsonFileAccessModel($fileName);
+$text = ['element4' => 'value1', 'element5' => 'value1', 'element6' => 21];
+$text1 = 'I am the text';
+print_r($obj->write($text1));
 ?>
 
 <!DOCTYPE html>
