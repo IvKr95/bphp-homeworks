@@ -21,7 +21,7 @@ class Singleton
     {
         if (self::$instance === null) {
             self::$instance = new self();
-        }
+        };
         return self::$instance;
     }
-}
+};
