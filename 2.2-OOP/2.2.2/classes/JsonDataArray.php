@@ -10,7 +10,7 @@ class JsonDataArray
     const GUID_PREFIX = 'o';
 
     const SORT_DIRECTION_FORWARD = true;
-    const SORT_DIRECTION_BACKWORD = false;
+    const SORT_DIRECTION_BACKWARD = false;
 
     const GET_WITH_GUID = true;
     const GET_WITHOUT_GUID = false;
