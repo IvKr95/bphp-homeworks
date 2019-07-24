@@ -1,3 +1,11 @@
+<?php
+
+require 'uploadToDir.php';
+include 'deleteFile.php';
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,27 +15,27 @@
     <title>Document</title>
 </head>
 <body>
+    <form enctype="multipart/form-data" action="#" method="post" name="pic_upload">
+        <input type="file" name="picture">
+        <input type="submit" value="Отправить">
+    </form>
     <div>
         <?php 
 
-        require 'uploadToDir.php';
+        if(is_dir($uploadsDir)) {
 
-        if($isUploaded) {
-            if (is_dir($uploadsDir)) {
-                if($dh = opendir($uploadsDir)) {
-                    while ($file = readdir($dh)) {
-                        if ($file === '.' || $file === '..') continue;
-                        $src = str_replace($_SERVER['DOCUMENT_ROOT'], '', $uploadsDir);
+            $files = scandir($uploadsDir);
 
-                        echo "<img src=\"$src$file\" alt=\"pic\" width=\"300px\"><br>";
-                    };
-                    echo '<div>Files has been successfully uploaded!</div>';
-                };
-                closedir($dh);
+            foreach ($files as $key => $file) 
+            {
+                if ($file === '.' || $file === '..') continue;
+                $src = str_replace($_SERVER['DOCUMENT_ROOT'], '', $uploadsDir);
+
+                echo "<img src=\"$src$file\" alt=\"pic\" width=\"300px\"><br>";
             };
+            echo '<div>Files have been successfully uploaded!</div>';
         };
 
-        include 'deleteFile.php';
         ?>
     </div>
 </body>

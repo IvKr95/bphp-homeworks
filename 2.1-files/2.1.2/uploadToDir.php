@@ -1,12 +1,18 @@
 <?php
 
-$uploadsDir = __DIR__.'/uploads/';
+$uploadsDir = __DIR__ . '/uploads/';
 $fileName = 'picture';
 $isUploaded = uploadFileToDir($uploadsDir, $fileName);
 
 function uploadFileToDir($uploadsDir='', $fileName='') 
 {
-    $extType = ['gif','jpg','jpe','jpeg','png'];
+    $extType = [
+        'gif', 
+        'jpg', 
+        'jpe', 
+        'jpeg', 
+        'png',
+    ];
 
     if ($_FILES[$fileName]['error'] === 0) {
 
