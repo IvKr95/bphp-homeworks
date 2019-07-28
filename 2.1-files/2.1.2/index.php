@@ -17,9 +17,10 @@ include 'deleteFile.php';
 <body>
     <form enctype="multipart/form-data" action="#" method="post" name="pic_upload">
         <input type="file" name="picture">
-        <input type="submit" value="Отправить">
+        <input type="submit" value="Отправить" name="submit">
     </form>
     <div>
+    
         <?php 
 
         if(is_dir($uploadsDir)) {
@@ -32,6 +33,7 @@ include 'deleteFile.php';
                 $src = str_replace($_SERVER['DOCUMENT_ROOT'], '', $uploadsDir);
 
                 echo "<img src=\"$src$file\" alt=\"pic\" width=\"300px\"><br>";
+                
             };
             echo '<div>Files have been successfully uploaded!</div>';
         };

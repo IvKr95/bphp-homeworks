@@ -8,7 +8,7 @@ $obj = new FileAccessModel($fileName);
 $objJson = new JsonFileAccessModel($fileName);
 $text = ['element4' => 'value1', 'element5' => 'value1', 'element6' => 21];
 $text1 = 'I am the text';
-print_r($obj->write($text1));
+print_r($objJson->writeJson($text));
 ?>
 
 <!DOCTYPE html>

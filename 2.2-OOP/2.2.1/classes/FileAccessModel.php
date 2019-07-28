@@ -27,22 +27,22 @@ class FileAccessModel
 
     public function read()
     {
-        $this::connect('r');
+        $this->connect('r');
 
         if (is_readable($this->fileName)) {
             $data = fread($this->file, filesize($this->fileName));
         }; 
-        $this::disconnect();
+        $this->disconnect();
         return json_decode($data);
     }
 
     public function write($text)
     {
-        $this::connect('w');
+        $this->connect('w');
 
         if (is_writable($this->fileName)) {
             $data = fwrite($this->file, $text);
         };
-        $this::disconnect();
+        $this->disconnect();
     }
 };

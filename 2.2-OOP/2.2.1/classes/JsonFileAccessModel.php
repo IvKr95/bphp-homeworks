@@ -5,12 +5,12 @@ class JsonFileAccessModel extends FileAccessModel
 
     public function readJson()
     {
-        $this::connect('r');
+        $this->connect('r');
 
         if (is_readable($this->fileName)) {
             $data = fread($this->file, filesize($this->fileName));
         };
-        $this::disconnect();
+        $this->disconnect();
         return $data;
     }
 
@@ -18,10 +18,10 @@ class JsonFileAccessModel extends FileAccessModel
     {
         $json = json_encode($text, JSON_PRETTY_PRINT);
 
-        $this::connect('w');
+        $this->connect('w');
         if (is_writable($this->fileName)) {
             fwrite($this->file, $json);
         };
-        $this::disconnect();
+        $this->disconnect();
     }
 };
