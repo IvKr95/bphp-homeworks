@@ -53,6 +53,11 @@
             </li>
         </ul>
     </li>
+    <li>Блок 3. PHP как средство профессиональной разработки
+        <ul>
+            <li><a href="3.1-exceptions-and-headers\3.1.1-router">Задача 1. Роутер</a></li>
+        </ul>
+    </li>
 </ul>
 </body>
 </html>
