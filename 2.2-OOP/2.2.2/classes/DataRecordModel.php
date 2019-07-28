@@ -2,8 +2,8 @@
 
 class DataRecordModel
 {
-    private $filename;
-    private $guid;
+    private $filename,
+            $guid;
 
     public function __construct(string $guid = null)
     {

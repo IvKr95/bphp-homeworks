@@ -2,10 +2,10 @@
 
 class User extends DataRecordModel
 {
-    public $name;
-    public $email;
-    public $password;
-    public $rate;
+    public $name,
+            $email,
+            $password,
+            $rate;
 
     public function addUserFromForm($formData)
     {

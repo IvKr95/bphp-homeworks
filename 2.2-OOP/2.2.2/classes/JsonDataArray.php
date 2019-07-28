@@ -2,10 +2,10 @@
 
 class JsonDataArray
 {
-    private $file;
-    private $dataTitle;
-    private $dataArray;
-    private $query;
+    private $file,
+            $dataTitle,
+            $dataArray,
+            $query;
 
     const GUID_PREFIX = 'o';
 

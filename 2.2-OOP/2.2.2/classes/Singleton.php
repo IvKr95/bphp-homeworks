@@ -4,16 +4,16 @@ class Singleton
 {
     protected static $instance;
 
-    private function __construct()
+    public function __construct()
     {
     }
 
-    private function __clone()
+    public function __clone()
     {
         throw new Error('Not clonable..');
     }
 
-    private function __wakeup()
+    public function __wakeup()
     {
     }
 

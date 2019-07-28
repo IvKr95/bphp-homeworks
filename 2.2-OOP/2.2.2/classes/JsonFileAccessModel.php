@@ -2,12 +2,12 @@
 
 class JsonFileAccessModel
 {
-    protected $fileName;
-    protected $file;
+    protected $fileName,
+                $file;
 
     public function __construct($fileName)
     {
-        $this->fileName = Config::DATABASE_PATH.$fileName.'.json';
+        $this->fileName = __DIR__ . '/../' . Config::DATABASE_PATH.$fileName.'.json';
     }
 
     protected function connect($mode)
@@ -27,33 +27,33 @@ class JsonFileAccessModel
 
     public function read()
     {
-        $this::connect('r');
+        $this->connect('r');
 
         if (is_readable($this->fileName)) {
             $data = fread($this->file, filesize($this->fileName));
         }; 
-        $this::disconnect();
+        $this->disconnect();
         return json_decode($data);
     }
 
     public function write($text)
     {
-        $this::connect('w');
+        $this->connect('w');
 
         if (is_writable($this->fileName)) {
             $data = fwrite($this->file, $text);
         };
-        $this::disconnect();
+        $this->disconnect();
     }
 
     public function readJson()
     {
-        $this::connect('r');
+        $this->connect('r');
 
         if (is_readable($this->fileName)) {
             $data = fread($this->file, filesize($this->fileName));
         };
-        $this::disconnect();
+        $this->disconnect();
         return json_decode($data);
     }
 
@@ -61,10 +61,10 @@ class JsonFileAccessModel
     {
         $json = json_encode($text, JSON_PRETTY_PRINT);
 
-        $this::connect('w');
+        $this->connect('w');
         if (is_writable($this->fileName)) {
             fwrite($this->file, $json);
         };
-        $this::disconnect();
+        $this->disconnect();
     }
 };
