@@ -12,11 +12,6 @@ class Router
 
     public function isAvailablePage($pageName)
     {
-        if(in_array($pageName, $this->availLinks)) {
-            echo "Вы находитесь на странице <b>$pageName</b>";
-            return true;
-        } else {
-            throw new NotFound('Page Not Found');
-        };
+        return in_array($pageName, $this->availLinks);
     }
 };
