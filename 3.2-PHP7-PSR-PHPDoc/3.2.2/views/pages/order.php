@@ -8,6 +8,7 @@
  */
 
 $order = $data['order'];
+
 ?>
 
 <div class="row">

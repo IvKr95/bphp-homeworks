@@ -10,7 +10,7 @@
 function renderView(string $layout, string $page = null, array $data = null)
 {
     ob_start();
-    require TASK_PATH . '\views\pages\\' . $page . '.php';
+    require TASK_PATH . 'views/pages/' . $page . '.php';
     $content = ob_get_clean();
-    require TASK_PATH . '\views\layouts\\' . $layout . '.php';
+    require TASK_PATH . '/views/layouts/' . $layout . '.php';
 }

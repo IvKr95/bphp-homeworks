@@ -15,7 +15,7 @@ require './Person.php';
     <?php
         $name = 'Иван';
         $surname = 'Иванов';
-        $patronymic = '';
+        $patronymic = 'Иванович';
         $new_person = new Person($name, $surname, $patronymic);
     ?>
   <h2>
