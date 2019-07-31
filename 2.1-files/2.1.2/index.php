@@ -1,7 +1,7 @@
 <?php
 
 require 'uploadToDir.php';
-include 'deleteFile.php';
+require 'deleteFile.php';
 
 ?>
 
@@ -15,9 +15,13 @@ include 'deleteFile.php';
     <title>Document</title>
 </head>
 <body>
-    <form enctype="multipart/form-data" action="#" method="post" name="pic_upload">
+    <form enctype="multipart/form-data" action="" method="post" name="pic_upload">
         <input type="file" name="picture">
-        <input type="submit" value="Отправить" name="submit">
+        <input type="submit" value="Отправить" name="upload">
+    </form>
+    <form action="" method="post">
+        File Name: <input type="text" name="fileToDelete">
+        <input type="submit" value="Удалить" name="delete">
     </form>
     <div>
     

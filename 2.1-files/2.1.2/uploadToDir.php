@@ -3,8 +3,8 @@
 $uploadsDir = __DIR__ . '/uploads/';
 $fileName = 'picture';
 
-if(in_array('submit', $_POST)) {
-    $isUploaded = uploadFileToDir($uploadsDir, $fileName);
+if(isset($_POST['upload'])) {
+    uploadFileToDir($uploadsDir, $fileName);
 };
 
 function uploadFileToDir($uploadsDir='', $fileName='') 

@@ -1,16 +1,15 @@
 <?php
 
+if(isset($_POST['delete'])) {
+    deleteFile($_POST['fileToDelete'], $uploadsDir);
+};
 
-function deleteFile($dir = '', $fileName = '') 
+function deleteFile($fileName, $dir)
 {
-
-    if (is_dir($dir)) {
-
-        $d = scandir($dir);
-        
-        if (in_array($fileName, $d)) {
-            unlink($dir.$fileName);
-            echo 'File has been successfully removed!';
-        };
-    };
+    if (file_exists($dir.$fileName)) {
+        unlink($dir.$fileName);
+        echo 'File successfully deleted';
+    } else {
+        echo 'File Not Exist';
+    }
 };
