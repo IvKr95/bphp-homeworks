@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+setTimestamp();
 
     /**
      * Функция получает текущее количество просмотров на видео
@@ -30,12 +31,12 @@ session_start();
      *
      * @return bool
      */
-    function shouldBeIncremented():bool
+    function shouldBeIncremented(): bool
     {
-        return $_SESSION['timestamp'] ? true : false;
+        return $_SESSION['timestamp'] ?? false;
     }
 
-    function setTimestamp()
+    function setTimestamp(): void
     {
         $res = shouldBeIncremented();
         if ($res) {
@@ -50,8 +51,6 @@ session_start();
             incrementViews($views);
         };
     };
-
-    setTimestamp();
     
     //
 ?>
