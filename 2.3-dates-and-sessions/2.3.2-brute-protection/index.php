@@ -8,11 +8,13 @@ $users = [
     'janitor' => 'nimbus2000'
 ];
 
+$badLoginLimit = 3;
+$btwTwoLimit = 5;
+$btwThreeLimit = 60;
+
 if(isset($_POST['submit'])) {
 
-    if (!isset($_SESSION['counter'])) {
-        $_SESSION['counter'] = 0;
-    };    
+    $_SESSION['counter'] ?? $_SESSION['counter'] = 1;
 
     $login = trim($_POST['login']);
     $pass = trim($_POST['password']);
@@ -23,13 +25,12 @@ if(isset($_POST['submit'])) {
         
     } else {
 
-        $_SESSION['counter'] += 1;
-
         setcookie('error[' . $_SESSION['counter'] . ']', time(), time()+3600, '/', 'ivkr95.000webhostapp.com');
-
+        
         if (isset($_COOKIE['error'])) {
-
-            if ((time() - $_COOKIE['error'][$_SESSION['counter'] - 1]) < 5 || (time() - $_COOKIE['error'][$_SESSION['counter'] - 2]) < 60) {
+            
+            if ($_SESSION['counter'] >= $badLoginLimit && (time() - $_COOKIE['error'][$_SESSION['counter'] - 2]) < $btwThreeLimit
+                || (time() - $_COOKIE['error'][$_SESSION['counter'] - 1]) < $btwTwoLimit) {
 
                 $dh = fopen($login, 'at');
                 $content = date('d.m.Y h:i:s', time());
@@ -45,5 +46,6 @@ if(isset($_POST['submit'])) {
             echo 'Неверно введены данные';
         };
     };
+    $_SESSION['counter'] += 1;
 };
  
