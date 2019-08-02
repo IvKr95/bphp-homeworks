@@ -9,9 +9,9 @@
 require_once 'const.php';
 require_once 'loadJSON.php';
 require_once 'renderView.php';
-require_once 'calcBill.php';
+require_once 'classes/CreateBill.php';
 $menu = loadJSON('menu');
 $order = $_POST;
-$billObj = new Bill($menu, $order);
+$bill = new CreateBill($menu, $order);
 
-renderView('default', 'order', [ 'order' => $billObj->getBill()]);
+renderView('default', 'order', [ 'order' => $bill->getBill()]);
