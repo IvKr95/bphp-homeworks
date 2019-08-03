@@ -8,13 +8,15 @@ $users = [
     'janitor' => 'nimbus2000'
 ];
 
-$badLoginLimit = 3;
-$btwTwoLimit = 5;
-$btwThreeLimit = 60;
+$_SESSION['firstSubmitTime'] ?? $_SESSION['firstSubmitTime'] = 0;
+$_SESSION['lastSubmitTime'] ?? $_SESSION['lastSubmitTime'] = 0;
+$_SESSION['counter'] ?? $_SESSION['counter'] = 0;
+
 
 if(isset($_POST['submit'])) {
 
-    $_SESSION['counter'] ?? $_SESSION['counter'] = 1;
+    if ($_SESSION['counter'] === 0) $_SESSION['firstSubmitTime'] = time();
+    if ($_SESSION['counter'] === 3) $_SESSION['counter'] = 0;
 
     $login = trim($_POST['login']);
     $pass = trim($_POST['password']);
@@ -24,28 +26,26 @@ if(isset($_POST['submit'])) {
         echo 'Добро пожаловать!';
         
     } else {
+        $_SESSION['counter'] += 1;
 
         setcookie('error[' . $_SESSION['counter'] . ']', time(), time()+3600, '/', 'ivkr95.000webhostapp.com');
-        
-        if (isset($_COOKIE['error'])) {
-            
-            if ($_SESSION['counter'] >= $badLoginLimit && (time() - $_COOKIE['error'][$_SESSION['counter'] - 2]) < $btwThreeLimit
-                || (time() - $_COOKIE['error'][$_SESSION['counter'] - 1]) < $btwTwoLimit) {
 
-                $dh = fopen($login, 'at');
+        echo 'Неверно введены данные';
+
+        if (isset($_COOKIE['error'])) {
+
+            if (time() - $_SESSION['lastSubmitTime'] < 5 || $_SESSION['counter'] === 3 && time() - $_SESSION['firstSubmitTime'] < 60) {
+                $dh = fopen($login, 'ab');
                 $content = date('d.m.Y h:i:s', time());
                 fwrite($dh, $content . PHP_EOL);
                 fclose($dh);
-
-                exit('Слишком часто вводите пароль. Попробуйте еще раз через минуту.');
-
-            } else {
-                echo 'Неверно введены данные';
+                
+                $_SESSION['lastSubmitTime'] = time();
+                exit('Слишком часто вводите пароль. Попробуйте еще раз через минуту');
             };
-        } else {
-            echo 'Неверно введены данные';
         };
     };
-    $_SESSION['counter'] += 1;
+
+    $_SESSION['lastSubmitTime'] = time();
 };
  
